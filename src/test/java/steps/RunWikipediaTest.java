@@ -1,6 +1,5 @@
 package steps;
 
-import cucumber.api.CucumberOptions;
 import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -9,9 +8,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 
-@CucumberOptions(features = "src/test/resources/features/")
+import static junit.framework.TestCase.assertTrue;
+
 public class RunWikipediaTest{
 
     private WebDriver driver;
@@ -45,13 +44,13 @@ public class RunWikipediaTest{
     public void assertSingleResult(String searchResult) {
         WebElement results = driver
                 .findElement(By.id("firstHeading"));
-        Assert.assertTrue(results.getText().contains(searchResult));
+        assertTrue(results.getText().contains(searchResult));
     }
 
     @Then("^Google result is shown for '(.*?)'$")
     public void assertGoogleResult(String searchResult) {
         WebElement results = driver.findElement(By.id("LC20lb"));
-        Assert.assertTrue(results.getText().contains(searchResult));
+        assertTrue(results.getText().contains(searchResult));
     }
 
     @Given("^Open (.*?)$")
@@ -72,9 +71,6 @@ public class RunWikipediaTest{
             break;
             default: throw new IllegalStateException("There are no drivers compatible with OS: " + OSName);
         }
-
-
-
     }
 
     @After
@@ -84,6 +80,6 @@ public class RunWikipediaTest{
 
     @Then("^At (.*?)$")
     public void atHttpsEnWikipediaOrg(String url) throws Throwable {
-        Assert.assertTrue(driver.getCurrentUrl().startsWith(url));
+        assertTrue(driver.getCurrentUrl().startsWith(url));
     }
 }

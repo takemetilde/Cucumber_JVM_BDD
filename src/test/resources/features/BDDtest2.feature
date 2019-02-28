@@ -7,3 +7,4 @@ Feature: Search Google
   Scenario: Direct search article
     Given Enter google search term 'Cucumber'
     When Do google search
+    Then Google result is shown for 'Cucumber'

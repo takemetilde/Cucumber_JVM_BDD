@@ -1,0 +1,127 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 3,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 2956323795,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "Open https://en.wikipedia.org/",
+            "match": {
+              "arguments": [
+                {
+                  "val": "https://en.wikipedia.org/",
+                  "offset": 5
+                }
+              ],
+              "location": "RunWikipediaTest.openHttpEnWikipediaOrg(String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 68793129,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "At https://en.wikipedia.org/",
+            "match": {
+              "arguments": [
+                {
+                  "val": "https://en.wikipedia.org/",
+                  "offset": 3
+                }
+              ],
+              "location": "RunWikipediaTest.atHttpsEnWikipediaOrg(String)"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "line": 7,
+        "name": "Direct search article",
+        "description": "",
+        "id": "search-wikipedia;direct-search-article",
+        "after": [
+          {
+            "result": {
+              "duration": 78476589,
+              "status": "passed"
+            },
+            "match": {
+              "location": "RunWikipediaTest.tearDown()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 257042824,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "Enter search term \u0027Cucumber\u0027",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Cucumber",
+                  "offset": 19
+                }
+              ],
+              "location": "RunWikipediaTest.searchFor(String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1617201923,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "Do search",
+            "match": {
+              "location": "RunWikipediaTest.clickSearchButton()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 141382068,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "Single result is shown for \u0027Cucumber\u0027",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Cucumber",
+                  "offset": 28
+                }
+              ],
+              "location": "RunWikipediaTest.assertSingleResult(String)"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Search Wikipedia",
+    "description": "",
+    "id": "search-wikipedia",
+    "keyword": "Feature",
+    "uri": "file:/home/hher/Documents/GitHub%20hongiaher%20repo/Cucumber_JVM_BDD/src/test/resources/features/BDDtest.feature",
+    "tags": []
+  }
+]
