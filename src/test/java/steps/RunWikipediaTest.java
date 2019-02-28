@@ -1,25 +1,31 @@
 package steps;
 
 import cucumber.api.CucumberOptions;
+import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 
-
-public class RunWikipediaTest  extends AbstractTestNGCucumberTests{
+@CucumberOptions(features = "src/test/resources/features/")
+public class RunWikipediaTest{
 
     private WebDriver driver;
+    final private String OSName = System.getProperty("os.name");
 
     @Given("^Enter search term '(.*?)'$")
     public void searchFor(String searchTerm) {
         WebElement searchField = driver.findElement(By.id("searchInput"));
+        searchField.sendKeys(searchTerm);
+    }
+
+    @Given("^Enter google search term '(.*?)'$")
+    public void googleSearchFor(String searchTerm) {
+        WebElement searchField = driver.findElement(By.name("q"));
         searchField.sendKeys(searchTerm);
     }
 
@@ -29,12 +35,23 @@ public class RunWikipediaTest  extends AbstractTestNGCucumberTests{
         searchButton.click();
     }
 
+    @When("^Do google search$")
+    public void doGoogleSearch() {
+        WebElement searchField = driver.findElement(By.name("q"));
+        searchField.submit();
+    }
+
     @Then("^Single result is shown for '(.*?)'$")
     public void assertSingleResult(String searchResult) {
         WebElement results = driver
-                .findElement(By.cssSelector("div#mw-content-text.mw-content-ltr p"));
-        Assert.assertFalse(results.getText().contains(searchResult + " may refer to:"));
-        Assert.assertTrue(results.getText().startsWith(searchResult));
+                .findElement(By.id("firstHeading"));
+        Assert.assertTrue(results.getText().contains(searchResult));
+    }
+
+    @Then("^Google result is shown for '(.*?)'$")
+    public void assertGoogleResult(String searchResult) {
+        WebElement results = driver.findElement(By.id("LC20lb"));
+        Assert.assertTrue(results.getText().contains(searchResult));
     }
 
     @Given("^Open (.*?)$")
@@ -45,13 +62,24 @@ public class RunWikipediaTest  extends AbstractTestNGCucumberTests{
     }
 
     public void setupChromeDriver(){
-        System.setProperty("webdriver.chrome.driver",
-                System.getProperty("user.dir") + "/drivers/chromedriver_win32.exe");
+        System.out.println(OSName);
+        switch (OSName){
+            case "Linux": System.setProperty("webdriver.chrome.driver",
+                    System.getProperty("user.dir") + "/drivers/chromedriver_linux64.exe");
+            break;
+            case "Windows": System.setProperty("webdriver.chrome.driver",
+                    System.getProperty("user.dir") + "/drivers/chromedriver_win32.exe");
+            break;
+            default: throw new IllegalStateException("There are no drivers compatible with OS: " + OSName);
+        }
+
+
+
     }
 
-    @AfterMethod
+    @After
     public void tearDown(){
-        driver.quit();
+        driver.close();
     }
 
     @Then("^At (.*?)$")
