@@ -66,7 +66,7 @@ public class RunWikipediaTest{
             case "Linux": System.setProperty("webdriver.chrome.driver",
                     System.getProperty("user.dir") + "/drivers/chromedriver_linux64.exe");
             break;
-            case "Windows": System.setProperty("webdriver.chrome.driver",
+            case "Windows 10": System.setProperty("webdriver.chrome.driver",
                     System.getProperty("user.dir") + "/drivers/chromedriver_win32.exe");
             break;
             default: throw new IllegalStateException("There are no drivers compatible with OS: " + OSName);
