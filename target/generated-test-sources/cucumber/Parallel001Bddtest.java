@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
         strict = true,
         features = {"/home/hher/Documents/GitHub hongiaher repo/Cucumber_JVM_BDD/src/test/resources/features/BDDtest.feature"},
-        plugin = {"json:/home/hher/Documents/GitHub hongiaher repo/Cucumber_JVM_BDD/target/generated-test-sources/cucumber/1.json", "junit:/home/hher/Documents/GitHub hongiaher repo/Cucumber_JVM_BDD/target/generated-test-sources/cucumber/1.xml", "html:/home/hher/Documents/GitHub hongiaher repo/Cucumber_JVM_BDD/target/generated-test-sources/cucumber/1", "rerun:/home/hher/Documents/GitHub hongiaher repo/Cucumber_JVM_BDD/target/generated-test-sources/cucumber/1.txt"},
+        plugin = {"json:/home/hher/Documents/GitHub hongiaher repo/Cucumber_JVM_BDD/target/generated-test-sources/cucumber/1.json", "junit:/home/hher/Documents/GitHub hongiaher repo/Cucumber_JVM_BDD/target/generated-test-sources/cucumber/1.xml", "html:/home/hher/Documents/GitHub hongiaher repo/Cucumber_JVM_BDD/target/generated-test-sources/cucumber/1"},
         monochrome = true,
         tags = {},
         glue = {"steps/"})
