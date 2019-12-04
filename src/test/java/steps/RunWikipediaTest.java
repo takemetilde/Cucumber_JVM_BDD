@@ -5,6 +5,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,8 +46,7 @@ public class RunWikipediaTest  extends AbstractTestNGCucumberTests{
     }
 
     public void setupChromeDriver(){
-        System.setProperty("webdriver.chrome.driver",
-                System.getProperty("user.dir") + "/drivers/chromedriver_win32.exe");
+        WebDriverManager.chromedriver().setup();
     }
 
     @AfterMethod
